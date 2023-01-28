@@ -1,6 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useState } from 'react';
 import { FlatList, SafeAreaView, Text, View, StyleSheet, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native';
+import { and } from 'react-native-reanimated';
 import {ListItem} from './flatItem';
 
 
@@ -38,6 +40,7 @@ export function FlatsScreen() {
                 refreshing={isLoading}
                 onRefresh={fetchFlats}
             />
+            
         }
         />
       </View>

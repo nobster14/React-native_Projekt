@@ -1,5 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface Flat {
     id : number,
@@ -18,15 +19,24 @@ interface Props {
     item: Flat
 }
 
-export const ListItem: React.FC<Props> = ({ item }) => (
-  <View style={styles.itemContainer}>
+
+
+export const ListItem: React.FC<Props> = ({ item }) => {
+  const navigation = useNavigation();
+
+  const handleFlatItemClick = (flatItem: any) => {
+    navigation.navigate('FlatItemDetails' as never, {flatItem} as never);
+  }
+  
+  return (
+  <TouchableOpacity style={styles.itemContainer} onPress={handleFlatItemClick}>
     <Image source={{ uri: `data:image/png;base64,${item.thumbnail}` }} style={styles.image} />
     <View style={styles.textContainer}>
       <Text style={styles.title}>{item.address}</Text>
       <Text style={styles.subtitle}>{item.town}</Text>
     </View>
-  </View>
-);
+  </TouchableOpacity>
+);}
 
 const styles = StyleSheet.create({
   itemContainer: {
