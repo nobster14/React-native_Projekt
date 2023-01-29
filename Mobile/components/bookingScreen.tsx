@@ -1,9 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { useState } from 'react';
 import { Text, View, StyleSheet, SafeAreaView, FlatList, ActivityIndicator, Alert } from 'react-native';
 import { BookingItem } from './bookingItem';
-import { Flat } from './flatItem';
+
 
 export const BookingsScreen: React.FunctionComponent = ({route} : any) => {
   const [isLoading, setLoading] = useState(true);
@@ -11,7 +10,7 @@ export const BookingsScreen: React.FunctionComponent = ({route} : any) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const { loginToken } = route.params;
-  const navigation = useNavigation();
+ 
 
 
   const handlePressDelete =  (bookingId: number, loginToken: string) => {
