@@ -30,8 +30,8 @@ export const ListItem: React.FunctionComponent<Props> = ({item, onPress} : Props
   <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
     <Image source={{ uri: `data:image/png;base64,${item.thumbnail}` }} style={styles.image} />
     <View style={styles.textContainer}>
-      <Text style={styles.title}>{item.town}</Text>
-      <Text style={styles.subtitle}>{item.address}</Text>
+      <Text style={styles.title}>Flat No. {item.id}</Text>
+      <Text style={styles.subtitle}>{item.town} {item.address}</Text>
     </View>
   </TouchableOpacity>
 );}

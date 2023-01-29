@@ -46,7 +46,6 @@ export const FlatItemDetailsScreen: React.FunctionComponent<FlatItemDetailsProps
             <Text style={styles.subheaderText}><Text style={styles.sectionHeaderText}>Capacity: </Text>{flat.capacity}</Text>
             <Text style={styles.subheaderText}><Text style={styles.sectionHeaderText}>Footage: </Text>{flat.footage}</Text>
             <Text style={styles.subheaderText}><Text style={styles.sectionHeaderText}>Price: </Text>{flat.price}$</Text>
-            <Text style={styles.subheaderText}><Text style={styles.sectionHeaderText}>Contact info: </Text>{flat.contactInfo}</Text>
             <Text style={styles.headerText}>Photos:</Text>
             <ScrollView style={styles.scrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
                 {data.map((image, index) => (
@@ -55,6 +54,7 @@ export const FlatItemDetailsScreen: React.FunctionComponent<FlatItemDetailsProps
             </ScrollView>
             <Text style={styles.sectionHeaderText}>Description:</Text>
             <Text style={styles.subheaderText}>{flat.description}</Text>
+            <Text style={styles.subheaderText}><Text style={styles.sectionHeaderText}>Contact info: </Text>{flat.contactInfo}</Text>
     </ScrollView>
 </View>
     );
