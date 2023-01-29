@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Mobile",
-    "slug": "Mobile",
+    "slug": "flatly-wednesday-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0131075f-46bd-4371-987a-a12e4863d5b0"
+      }
+    },
+    "owner": "nobster14"
   }
 }
