@@ -16,10 +16,8 @@ export const LoginScreen: React.FunctionComponent = ({route} : any) => {
   const navigation = useNavigation();
 
   const { loginToken, setLoginToken } = route.params;
-  const [localLoginToken, setLocalLoginToken] = React.useState("");
 
-
-  const handleLogin = () : boolean => {
+  const handleLogin = () => {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -30,12 +28,18 @@ export const LoginScreen: React.FunctionComponent = ({route} : any) => {
     };
 
     fetch('https://pw-flatly.azurewebsites.net/auth/login', requestOptions)
-        .then(response => response.json())
-        .then(json => { setLocalLoginToken(json)})
+        .then(response => {
+          if (response.status >= 400) {
+            alert('Invalid username or password')
+            return null;
+          }
+            
+          return response.json()
+        })
+        .then(json => {
+          if (json != null)
+           setLoginToken(json.jwttoken)})
         .catch(() => {setLoginToken("")})
-
-        console.error(localLoginToken);
-    return localLoginToken == "" ? false : true;
 };
   return (
     <View style={styles.container}>
@@ -52,9 +56,7 @@ export const LoginScreen: React.FunctionComponent = ({route} : any) => {
         value={state.password}
         secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button} onPress={() => {
-        if (handleLogin() === false)
-        alert('Invalid username or password')}}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register' as never)}>

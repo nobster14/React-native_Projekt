@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-interface Flat {
+export interface Flat {
     id : number,
     country : string,
     town : string,
@@ -10,30 +10,28 @@ interface Flat {
     capacity : number,
     rooms : number,
     footage : number,
+    price: string,
     contactInfo : string,
     description : string,
     thumbnail : string
 }
 
 interface Props {
-    item: Flat
+    item: Flat,
+    onPress: () => void 
 }
 
 
 
-export const ListItem: React.FC<Props> = ({ item }) => {
-  const navigation = useNavigation();
+export const ListItem: React.FunctionComponent<Props> = ({item, onPress} : Props) => {
 
-  const handleFlatItemClick = (flatItem: any) => {
-    navigation.navigate('FlatItemDetails' as never, {flatItem} as never);
-  }
   
   return (
-  <TouchableOpacity style={styles.itemContainer} onPress={handleFlatItemClick}>
+  <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
     <Image source={{ uri: `data:image/png;base64,${item.thumbnail}` }} style={styles.image} />
     <View style={styles.textContainer}>
-      <Text style={styles.title}>{item.address}</Text>
-      <Text style={styles.subtitle}>{item.town}</Text>
+      <Text style={styles.title}>{item.town}</Text>
+      <Text style={styles.subtitle}>{item.address}</Text>
     </View>
   </TouchableOpacity>
 );}

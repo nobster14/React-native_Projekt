@@ -12,38 +12,40 @@ import { FlatItemDetailsScreen } from './components/flatItemDetails';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function TabNavigator() {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === 'Flats') 
-            return <Feather name="home" size={size} color={color} />;
-          
-          else if (route.name === 'Bookings') 
-            return <Feather name="book" size={size} color={color}/>
-          
-          return null;
-        },
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
-      })}>       
-        <Tab.Screen name="Flats" component={FlatsScreen} />
-        <Tab.Screen name="Bookings" component={BookingsScreen} />
-      </Tab.Navigator>
-  );
-}
+
 
 
 export default function App() {
   const [loginToken, setLoginToken] = React.useState("");
 
+  function TabNavigator() {
+    return (
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            if (route.name === 'Flats') 
+              return <Feather name="home" size={size} color={color} />;
+            
+            else if (route.name === 'Bookings') 
+              return <Feather name="book" size={size} color={color}/>
+            
+            return null;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}>       
+          <Tab.Screen name="Flats" component={FlatsScreen} initialParams={{loginToken}}/>
+          <Tab.Screen name="Bookings" component={BookingsScreen} initialParams={{loginToken}}/>
+        </Tab.Navigator>
+    );
+  }
+
   return (
     <NavigationContainer>
       {loginToken != "" ? (
         <Stack.Navigator>
-          <Stack.Screen name="TabNavigator" component={TabNavigator} options={{headerShown: false}} />
-          <Stack.Screen name="FlatItemDetails" component={FlatItemDetailsScreen} />
+          <Stack.Screen name="Back" component={TabNavigator} options={{headerShown: false}} />
+          <Stack.Screen name="Flat details" component={FlatItemDetailsScreen} />      
         </Stack.Navigator>
       ) : (
         <Stack.Navigator initialRouteName="Login">
