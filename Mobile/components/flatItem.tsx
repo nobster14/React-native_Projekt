@@ -24,7 +24,8 @@ interface Props {
 
 
 export const ListItem: React.FunctionComponent<Props> = ({item, onPress} : Props) => {
-
+  console.log(item.thumbnail);
+  console.log(item.id);
   
   return (
   <TouchableOpacity style={styles.itemContainer} onPress={onPress}>

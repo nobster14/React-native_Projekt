@@ -43,7 +43,7 @@ export const LoginScreen: React.FunctionComponent = ({route} : any) => {
 };
   return (
     <View style={styles.container}>
-      <Text>Username:</Text>
+      <Text>E-mail:</Text>
       <TextInput
         style={styles.inputContainer}
         onChangeText={(username) => setState({ ...state, username })}

@@ -12,7 +12,7 @@ export const FlatItemDetailsScreen: React.FunctionComponent<FlatItemDetailsProps
     const flat : Flat = route.params.flatItem;
     const loginToken = route.params.loginToken;
     const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState<any[]>([flat.thumbnail]);
+    const [data, setData] = useState<any[]>([]);
 
     function fetchImages() {
         const requestOptions = {
